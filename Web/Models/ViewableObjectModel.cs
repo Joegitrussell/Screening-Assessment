@@ -6,6 +6,7 @@
         public string? OriginalString { get; set; }
         public string? ReversedCharacters { get; set; }
         public string? ReversedWords { get; set; }
+        public string? Statement {  get; set; }
     }
 }
 

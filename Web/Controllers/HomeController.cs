@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Screening_Assessment.Controllers;
 using Screening_Assessment.Models;
+using System.Data;
 using System.Diagnostics;
 using Web.Models;
 
@@ -19,11 +20,13 @@ namespace Web.Controllers
         {
             var count = ActionController.GetCounter();
             var dataObject = ActionController.GetReversedString();
+            var statement = ActionController.GetStatement();
 
             _viewableObject.Count = count;
             _viewableObject.OriginalString = dataObject.OriginalString;
             _viewableObject.ReversedCharacters = dataObject.ReversedCharacters;
             _viewableObject.ReversedWords = dataObject.ReversedWords;
+            _viewableObject.Statement = statement;
 
             return View(model: _viewableObject);
         }
