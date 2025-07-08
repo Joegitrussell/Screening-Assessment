@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Screening_Assessment.Controllers;
+using Screening_Assessment.Models;
 using System.Diagnostics;
 using Web.Models;
 
@@ -8,21 +9,30 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ViewableObjectModel _viewableObject = new ViewableObjectModel();
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-        public IActionResult Index(int? count)
+        public IActionResult Index()
         {
-            int currentCount = count ?? CounterController.GetCounter();
-            return View(model: currentCount);
+            var count = ActionController.GetCounter();
+            var dataObject = ActionController.GetReversedString();
+
+            _viewableObject.Count = count;
+            _viewableObject.OriginalString = dataObject.OriginalString;
+            _viewableObject.ReversedCharacters = dataObject.ReversedCharacters;
+            _viewableObject.ReversedWords = dataObject.ReversedWords;
+
+            return View(model: _viewableObject);
         }
 
-        public IActionResult NumberOfClicks(int? count)
+        public IActionResult NumberOfClicks()
         {
-            int currentCount = count ?? CounterController.GetCounter();
-            return View(model: currentCount);
+            _viewableObject.Count = ActionController.GetCounter();
+
+            return View(model: _viewableObject);
         }
 
         public IActionResult Privacy()

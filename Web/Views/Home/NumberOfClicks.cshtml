@@ -2,8 +2,8 @@
     ViewData["Title"] = "Number Of Clicks";
 }
 
-@model int
+@model Screening_Assessment.Models.ViewableObjectModel
 
 <h1>@ViewData["Title"]</h1>
 
-<p class="mt-3"><strong>The button was pressed @Model times</strong></p>
+<p class="mt-3"><strong>The button was pressed @Model.Count times</strong></p>
