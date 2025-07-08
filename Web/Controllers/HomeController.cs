@@ -1,5 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Screening_Assessment.Controllers;
+using System.Diagnostics;
 using Web.Models;
 
 namespace Web.Controllers
@@ -12,10 +13,10 @@ namespace Web.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Index(int? count)
         {
-            return View();
+            int currentCount = count ?? CounterController.GetCounter();
+            return View(model: currentCount);
         }
 
         public IActionResult Privacy()
