@@ -19,6 +19,12 @@ namespace Web.Controllers
             return View(model: currentCount);
         }
 
+        public IActionResult NumberOfClicks(int? count)
+        {
+            int currentCount = count ?? CounterController.GetCounter();
+            return View(model: currentCount);
+        }
+
         public IActionResult Privacy()
         {
             return View();
